@@ -1,3 +1,4 @@
+import { openModal } from "../assets/javascripts/modal";
 import "../assets/styles/styles.scss";
 import "./form.scss";
 
@@ -7,14 +8,11 @@ const btnCancel = document.querySelector(".btn-secondary");
 let errors = [];
 let articleId;
 
-// Nous allons créer une fonction asynchrone que nous invoquons de suite.
-// Nous parsons l’URL de la page et vérifions si nous avons un paramètre id.
-// Si nous avons un id, nous récupérons l’article correspondant.
 const initForm = async () => {
   const params = new URL(window.location.href);
   articleId = params.searchParams.get("id");
   if (articleId) {
-    const response = await fetch(`https://restapi.fr/api/hubertt/${articleId}`);
+    const response = await fetch(`https://restapi.fr/api/article/${articleId}`);
     if (response.status < 300) {
       const article = await response.json();
       fillForm(article);
@@ -24,8 +22,6 @@ const initForm = async () => {
 
 initForm();
 
-// Nous remplissons tous les champs de notre formulaire en créant des références
-// et en utilisant les informations récupérées du serveur.
 const fillForm = article => {
   const author = document.querySelector('input[name="author"]');
   const img = document.querySelector('input[name="img"]');
@@ -39,14 +35,15 @@ const fillForm = article => {
   content.value = article.content || "";
 };
 
-btnCancel.addEventListener("click", () => {
-  window.location.assign("/index.html");
+btnCancel.addEventListener("click", async () => {
+
+  const result = await openModal("Are you sure you want to cancel ?")
+  if (result) {
+    window.location.assign("/index.html");
+  }
+
 });
 
-// Lorsque nous éditons, nous ne créons pas de nouvelle ressource sur le serveur.
-// Nous n’utilisons donc pas une requête POST mais une requête PATCH.
-// Pas PUT car nous ne remplaçons pas la ressource distante (nous gardons
-// la date de création et l’id).
 form.addEventListener("submit", async event => {
   event.preventDefault();
   const formData = new FormData(form);
@@ -56,7 +53,7 @@ form.addEventListener("submit", async event => {
       const json = JSON.stringify(article);
       let response;
       if (articleId) {
-        response = await fetch(`https://restapi.fr/api/hubertt/${articleId}`, {
+        response = await fetch(`https://restapi.fr/api/article/${articleId}`, {
           method: "PATCH",
           body: json,
           headers: {
@@ -64,7 +61,7 @@ form.addEventListener("submit", async event => {
           }
         });
       } else {
-        response = await fetch("https://restapi.fr/api/hubertt", {
+        response = await fetch("https://restapi.fr/api/article", {
           method: "POST",
           body: json,
           headers: {
@@ -106,7 +103,3 @@ const formIsValid = article => {
     return true;
   }
 };
-
-
- //PUT remplace tout
- //PATCH met a jour une partie

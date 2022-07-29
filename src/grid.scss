@@ -1,0 +1,235 @@
+// this is a learning test about grids with css
+
+/*
+S'il n'y a pas de largeur défini sur l'item, par défaut, il occupe toute la cellule.
+
+cours 1 :
+
+.grid{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100px
+}
+
+@media screen and (min-width: 800px){
+  .grid {
+    grid-template-columns: repeat(4, 25%)
+  }
+}
+
+.item{
+   height: 100px;
+   width:100px;
+   background-color: black;
+   color: #fff;
+
+}
+*/
+
+
+/*
+cours 2
+
+Si trop d'éléments, grid crée tout seul des lignes
+grid-auto-rows permet de définir la hauteur des lignes créées automatiquement (implicitement)
+
+grid-auto-flow: row (est la propriété par défaut), on peut la remplacer par grid-auto-column
+grid-auto-columns permet de définir la hauteur des colonnes créées implicitement
+
+*/
+
+
+
+/*
+cours 3
+
+sur un élément on peut définir l'emplacement grace aux lignes
+
+grid-column: 2 / 4;  commence à la ligne 2 jusqu'à la ligne 4 donc colonne 2 et 3
+grid-column: 1 / -1 signifie jusqu'à la derniere colonne (100% de la largeur dispo), -2 (ligne 2 en partant de la fin)
+grid-row: 1 / 3;
+grid-column: 3 / 2 span;   commence à la ligne 3 et deux colonnes
+
+
+.grid {
+  display: grid;
+  grid-template-rows: repeat(3, 100px) ;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.item{
+  background-color: rgb(209, 144, 209);
+}
+
+ */
+
+
+
+/* cours 5
+minmax (min, max)
+gridgap permet de mettre des goutieres entre les elements
+
+.grid {
+  display: grid;
+  grid-template-rows: repeat(3, 100px) ;
+ // grid-template-columns: repeat(6, minmax(300px, 1fr)); //permet de fixer un minimun crée un scroll horizontal
+  //grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); //auto-fit agit comme un wrap si pas de place, on passe a la ligne
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); //auto-fill crée de nouvelle colonne si y a de la place, si pas de place, on passe à la ligne
+}
+
+.item{
+  background-color: rgb(209, 144, 209);
+}
+
+*/
+
+
+
+
+/*
+.container {
+  min-height: 100vh;
+  background-color: #ccc42e;
+  display: grid;
+  grid:
+    "header" auto
+    "content" 1fr
+    "footer" auto /
+    auto
+}
+
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  }
+
+  .div1 { grid-area: 2 / 4 / 3 / 6; }
+  .div2 { grid-area: 2 / 4 / 3 / 5; }
+  .div3 { grid-area: 1 / 1 / 2 / 6; }
+  .div4 { grid-area: 2 / 1 / 3 / 4; }
+  .div5 { grid-area: 3 / 1 / 4 / 3; }
+  .div6 { grid-area: 3 / 3 / 4 / 6; }
+  .div7 { grid-area: 4 / 1 / 5 / 6; }
+  .div8 { grid-area: 4 / 1 / 6 / 6; }
+*/
+
+body{
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.grid{
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 30vw;
+  grid-gap: 1rem;
+}
+.item-1, .item-7 {
+  grid-column: 1 / -1;
+}
+
+.item-2, .item-3, .item-4, .item-5, .item-6 {
+  grid-column: span 6;
+}
+
+.item-3{
+  grid-row: span 2;
+}
+
+.item-6{
+  grid-area: 4 / 1 / 5 / 7   //(row-start column-start row-end column-end)
+}
+
+@media screen and (min-width:900px)  {
+  .grid {
+    max-width: 80%;
+    margin: 0 auto;
+    grid-auto-rows: 30vw;
+  }
+
+  .item-1 {
+    grid-column: 1 / 9;
+    grid-row: span 2;
+  }
+
+  .item-2, .item-3 {
+    grid-column: 9 / 13
+  }
+
+
+  .item-4, .item-6 {
+    grid-column: 1 / 9
+
+  }
+
+  .item-5{
+    grid-column: span 4;
+    grid-row: 4 / 5
+
+  }
+
+  .item-7 {
+    grid-row: span 2
+  }
+
+}
+
+@media screen and (min-width: 1200px){
+  .grid {
+    max-width: 70%;
+    grid-auto-rows: 10vw;
+  }
+
+  .item-1 {
+    grid-column: 1 / 7;
+    grid-row: 1 / 3;
+  }
+
+  .item-2 {
+    grid-column: 7 / 10;
+    grid-row: 1 / 3;
+  }
+
+
+  .item-3 {
+    grid-column: 10 / 13;
+    grid-row: 1 / 3;
+  }
+
+
+  .item-4 {
+    grid-column: 1 / 4;
+    grid-row: 3 / 6;
+  }
+
+  .item-5 {
+    grid-column: 4 / 7;
+    grid-row: 3 / 6;
+  }
+
+  .item-6 {
+    grid-column: 7 / 10;
+    grid-row: 3 / 6;
+  }
+
+  .item-7 {
+    grid-column: 10 / 13;
+    grid-row: 3 / 6;
+  }
+
+
+
+
+
+}

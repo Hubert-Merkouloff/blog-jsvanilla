@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     main: path.join(__dirname, "src/index.js"),
     form: path.join(__dirname, "src/form/form.js"),
+    grid: path.join(__dirname, "src/grid.js"),
     topbar: path.join(__dirname, "src/assets/javascripts/topbar.js")
   },
   output: {
@@ -45,6 +46,10 @@ module.exports = {
       filename: "form.html",
       template: path.join(__dirname, "./src/form/form.html"),
       chunks: ["form", "topbar"]
+    }),
+    new HtmlWebpackPlugin({
+      filename: "grid.html",
+      template: path.join(__dirname, "./src/grid.html"),
     })
   ],
   stats: "minimal",

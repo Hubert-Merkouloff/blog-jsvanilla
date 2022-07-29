@@ -1,3 +1,4 @@
+
 @import "./assets/styles/media-queries";
 
 .content {
@@ -9,6 +10,16 @@
   .sidebar {
     flex: 0 0 25rem;
     padding: 0 2rem 2rem 2rem;
+    select{
+      width: 100%;
+      margin-bottom: 2rem;
+      border-radius: 0.3rem;
+      background-color: white;
+      border: 0;
+      outline: 0;
+      padding: 1rem;
+      box-shadow: var(--box-shadow);
+    }
     .categories {
       padding: 2rem;
       background: white;
@@ -20,17 +31,18 @@
         cursor: pointer;
         &:hover {
           color: var(--primary);
-          strong {
-            color: var(--primary);
-          }
         }
+      }
+
+      .active {
+        color: var(--primary);
       }
     }
   }
   .articles-container {
     max-width: 80rem;
     flex: 1;
-    margin: 5rem 0 10rem 0;
+    margin: 0rem 0 10rem 0;
     .article {
       background: white;
       padding: 0 5rem;

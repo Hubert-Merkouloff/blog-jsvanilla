@@ -33,10 +33,10 @@ header {
   .header-menu {
     position: relative;
     ul {
-      @include sm{
-        display: flex;
+      @include xs {
+        display: none;
       }
-      display: none;
+      display: flex;
       li {
         .header-nav {
           font-size: 1.8rem;
@@ -48,59 +48,43 @@ header {
         }
       }
     }
-    .header-menu-icons {
-      display: block;
+    .header-menu-icon {
+      display: none;
       font-size: 3rem;
       color: white;
-      @include sm {
-        display: none;
+      @include xs {
+        display: block;
       }
-
     }
-
     .mobile-menu {
       display: none;
       position: absolute;
       box-shadow: var(--box-shadow);
-      width: 200px;
-      top: 10rem;
-      right: 2rem;
-      padding: 1rem;
-      background-color: white;
+      top: 9.5rem;
+      right: 1rem;
+      padding: 3rem 1.5rem;
+      width: 20rem;
+      background: white;
       ul {
         display: block;
         li {
-          margin: 1rem 0;
+          margin: 2rem 0;
           a {
-            color: var(--dark);
-
+            color: var(--text);
           }
         }
       }
-
-      &.show {
-        display: block;
-        @include md {
-          display: none;
-        }
-        @include sm {
-          display: none;
-        }
-
-
-
-      }
     }
-
-
+    .mobile-menu.open {
+      display: block;
+    }
   }
-
 }
 
 .content {
   grid-area: content;
-  padding: 20px;
-  background-color: var(--divider);
+  padding: 2rem;
+  background: var(--divider);
 }
 
 footer {

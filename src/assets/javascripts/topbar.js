@@ -1,50 +1,51 @@
-
-const iconMenuElement = document.querySelector('.header-menu-icons');
-const headerMenu = document.querySelector('.header-menu')
+const iconMobile = document.querySelector(".header-menu-icon");
+const headerMenu = document.querySelector(".header-menu");
 let isMenuOpen = false;
 let mobileMenuDOM;
 
-
+const closeMenu = () => {
+  mobileMenuDOM.classList.remove("open");
+};
 
 const createMobileMenu = () => {
-  mobileMenuDOM = document.createElement('div')
-  mobileMenuDOM.classList.add('mobile-menu')
-  mobileMenuDOM.append(headerMenu.querySelector('ul').cloneNode(true)) //it s a copy, we don't change the initial list
-  headerMenu.append(mobileMenuDOM)
-  mobileMenuDOM.addEventListener("click", evt => evt.stopPropagation()) // do not close the mobile window if click on it
-}
-
-function closeMenu(e) {
-  mobileMenuDOM.classList.remove("show")
-}
-
+  mobileMenuDOM = document.createElement("div");
+  mobileMenuDOM.classList.add("mobile-menu");
+  mobileMenuDOM.addEventListener("click", event => {
+    event.stopPropagation();
+  });
+  mobileMenuDOM.append(headerMenu.querySelector("ul").cloneNode(true));
+  headerMenu.append(mobileMenuDOM);
+};
 
 const openMenu = () => {
-    if (mobileMenuDOM) {
-      // if already exists I only add class show
-    } else {
-      createMobileMenu();
-    }
-    mobileMenuDOM.classList.add("show");
-}
+  if (!mobileMenuDOM) {
+    createMobileMenu();
+  }
+  mobileMenuDOM.classList.add("open");
+};
 
-
-const toggleMenu = (e) => {
-  e.stopPropagation() // avoid activate event on the window that closes the menu.
+const toggleMobileMenu = event => {
   if (isMenuOpen) {
-    closeMenu()
+    closeMenu();
   } else {
-    openMenu(e)
+    openMenu();
   }
-  isMenuOpen = !isMenuOpen
-  console.log(isMenuOpen)
-}
+  isMenuOpen = !isMenuOpen;
+};
+// TODO to fix
+iconMobile.addEventListener("click", event => {
+  event.stopPropagation();
+  toggleMobileMenu();
+});
 
-iconMenuElement.addEventListener('click', toggleMenu)
-
-
-window.addEventListener('click', (e) => {
+window.addEventListener("click", () => {
   if (isMenuOpen) {
-    toggleMenu(e);
+    toggleMobileMenu();
   }
-} )
+});
+
+window.addEventListener("resize", event => {
+  if (window.innerWidth > 480 && isMenuOpen) {
+    toggleMobileMenu();
+  }
+});
