@@ -25,7 +25,7 @@
             </li>
             <li>
               <a href="./form.html" class="header-nav"
-                >Créer un article</a
+                >Create article</a
               >
             </li>
           </ul>
@@ -44,9 +44,64 @@
           <ul class="categories">
           </ul>
         </div>
-        <div class="articles-container"></div>
+        <div class="articles-container">
+          
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <FORM> element to your page.             -->
+<!--  ----------------------------------------------------------------------  -->
+
+<form action="https://mhuw--npspfull.sandbox.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+
+<input type=hidden name="orgid" value="00DDz000001qbwN">
+<input type=hidden name="retURL" value="https://unitedwaydenver.org/thank-you/">
+
+<!--  Record type:  LeadCase ------------------------------------------------------  -->
+<input type="hidden" name="recordType" id="recordType" value="012Dz000000BaQM">
+
+<!--  Lead Score: -----------------------------------------------------------------  -->
+<input type="hidden" name="00NDz000005BCWL" id="00NDz000005BCWL" value="2">
+
+<!--  Lead Category:  -------------------------------------------------------------  -->
+<input type="hidden" name="00NDz000005BCWQ" id="00NDz000005BCWQ" value="Catalyst">
+
+<!--  Web-to-Case Source:  --------------------------------------------------------- -->
+<input type="hidden" name="00N3600000TJ7Zr" id="00N3600000TJ7Zr" value="Website Inquiry- Catalyst">
+
+<!--  Cause Interest:  --------------------------------------------------------- -->
+<input type="hidden" name="00NDz000005BFdj" id="00NDz000005BFdj" value="Volunteerism">
+
+
+<!--  ################  --------------------------------------------------------- -->
+
+First Name:<input  id="00N3600000QsuST" maxlength="50" name="00N3600000QsuST" size="20" type="text" /><br>
+
+Last Name:<input  id="00N3600000QsuSw" maxlength="50" name="00N3600000QsuSw" size="20" type="text" /><br>
+
+<label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
+
+Company:<input  id="00NDz000005BFdt" maxlength="80" name="00NDz000005BFdt" size="20" type="text" /><br>
+
+County:<select  id="00N1Q00000TxSKP" name="00N1Q00000TxSKP" title="County"><option value="">--None--</option><option value="Adams">Adams</option>
+<option value="Arapahoe">Arapahoe</option>
+<option value="Boulder">Boulder</option>
+<option value="Broomfield">Broomfield</option>
+<option value="Denver">Denver</option>
+<option value="Douglas">Douglas</option>
+<option value="Jefferson">Jefferson</option>
+</select><br>
+
+<br>
+
+<input type="hidden"  id="external" name="external" value="1" /><br>
+
+
+<input type="submit" name="submit">
+
+</form>
+        </div>
       </div>
       <footer>© blog</footer>
+      
     </div>
   </body>
 </html>
